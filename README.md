@@ -26,27 +26,27 @@ src/
 
 *Please check the below files for the detailed code and comments to how the contract(s) and echidna test is designed:*
 
-**Contract Code:** [BasicVault.sol](./src/BasicVault.sol)
-**Echidna Test Code:** [EchidnaBasicVault.sol](./echidna/EchidnaBasicVault.sol)
-**Results:** [BasicVaultEchidnaResults.png](./echidna/Results/BasicVaultEchidnaResults.png)
+- **Contract Code:** [BasicVault.sol](./src/BasicVault.sol)
+- **Echidna Test Code:** [EchidnaBasicVault.sol](./echidna/EchidnaBasicVault.sol)
+- **Results:** [BasicVaultEchidnaResults.png](./echidna/Results/BasicVaultEchidnaResults.png)
 
 ### 2. MediumVault
 `MediumVault` improves on `BasicVault` by correctly updating `totalDeposited` in `withdraw()`, but introduces a `receive()` function to accept donations. Echidna only calls functions that are part of the contract ABI or have the `echidna_` prefix; it does not automatically generate raw transactions with empty calldata to hit `receive()` or `fallback()`. To expose the donation-related accounting bug, I use a dedicated harness (`EchidnaMediumVault`) that deploys `MediumVault` internally and provides explicit entry points (for example, `do_donate()`) that Echidna can fuzz.
 
 *Please check the below files for the detailed code and comments to how the contract(s) and echidna test is designed:*
 
-**Contract Code:** [MediumVault.sol](./src/MediumVault.sol)
-**Echidna Test Code:** [EchidnaMediumVault.sol](./echidna/EchidnaMediumVault.sol)
-**Results:** [MediumVaultEchidnaResults.png](./echidna/Results/MediumVaultEchidnaResults.png)
+- **Contract Code:** [MediumVault.sol](./src/MediumVault.sol)
+- **Echidna Test Code:** [EchidnaMediumVault.sol](./echidna/EchidnaMediumVault.sol)
+- **Results:** [MediumVaultEchidnaResults.png](./echidna/Results/MediumVaultEchidnaResults.png)
 
 ### 3. AdvancedVault
 `AdvancedVault` is an ERC4626-based vault that tracks deposits via a `totalDeposited` variable. The `deposit()` and `withdraw()` functions correctly update this variable, but `redeem()` is intentionally left inconsistent. Because Echidna cannot directly deploy contracts that require constructor arguments, I use a harness (`EchidnaAdvancedVault`) that instantiates `AdvancedVault` in its constructor and then defines properties over the vault’s state, allowing Echidna to find sequences where `redeem()` breaks the accounting invariants.
 
 *Please check the below files for the detailed code and comments to how the contract(s) and echidna test is designed:*
 
-**Contract Code:** [AdvancedVault.sol](./src/AdvancedVault.sol)
-**Echidna Test Code:** [EchidnaAdvancedVault.sol](./echidna/EchidnaAdvancedVault.sol)
-**Results:** [AdvancedVaultEchidnaResults.png](./echidna/Results/AdvancedVaultEchidnaResults.png)
+- **Contract Code:** [AdvancedVault.sol](./src/AdvancedVault.sol)
+- **Echidna Test Code:** [EchidnaAdvancedVault.sol](./echidna/EchidnaAdvancedVault.sol)
+- **Results:** [AdvancedVaultEchidnaResults.png](./echidna/Results/AdvancedVaultEchidnaResults.png)
 
 ***
 
@@ -65,9 +65,9 @@ Calling `deposit` or `withdraw` updates the `totalAssetsDeposited` consistently,
 
 *Please check the below files for the detailed code and comments to how the contract(s) and echidna test is designed:*
 
-**Contract Code:** [PriviledgeVault.sol](./src/PriviledgeVault.sol)
-**Echidna Test Code:** [EchidnaPriviledgeVault.sol](./echidna/EchidnaPriviledgeVault.sol)
-**Results:** [PriviledgeVaultEchidnaResults.png](./echidna/Results/PriviledgeVaultEchidnaResults.png)
+- **Contract Code:** [PriviledgeVault.sol](./src/PriviledgeVault.sol)
+- **Echidna Test Code:** [EchidnaPriviledgeVault.sol](./echidna/EchidnaPriviledgeVault.sol)
+- **Results:** [PriviledgeVaultEchidnaResults.png](./echidna/Results/PriviledgeVaultEchidnaResults.png)
 
 ## How To Run
 
