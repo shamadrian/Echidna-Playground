@@ -7,6 +7,7 @@ echidna/
 ├── EchidnaBasicVault.sol      # Property-based tests for BasicVault
 ├── EchidnaMediumVault.sol     # Property-based tests for MediumVault
 ├── EchidnaAdvancedVault.sol   # Property-based tests for AdvancedVault
+├── EchidnaPriviledgeVault.sol   # Property-based tests for PriviledgeVault
 └── Results/                   # Saved Echidna run outputs
 ```
 
@@ -17,6 +18,7 @@ src/
 ├── BasicVault.sol             # Simple ETH vault with naive accounting
 ├── MediumVault.sol            # More complex vault example
 └── AdvancedVault.sol          # Advanced vault example (for richer properties)
+└── PriviledgeVault.sol          # Priviledge vault example 
 ```
 
 ## Contents
